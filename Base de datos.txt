@@ -1,0 +1,27 @@
+-- Crear la base de datos
+CREATE DATABASE InventoryDB;
+GO
+
+-- Usar la base de datos recién creada
+USE InventoryDB;
+GO
+
+-- Crear la tabla Products
+CREATE TABLE Products (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Name NVARCHAR(100) NOT NULL,
+    Price DECIMAL(18, 2) NOT NULL,
+    Stock INT NOT NULL
+);
+GO
+
+-- Crear la tabla Kardex
+CREATE TABLE Kardex (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    ProductId INT NOT NULL,
+    Quantity INT NOT NULL,
+    Type NVARCHAR(50) NOT NULL,
+    Date DATETIME NOT NULL,
+    FOREIGN KEY (ProductId) REFERENCES Products(Id)
+);
+GO
